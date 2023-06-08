@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Export Notifications.</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        p {
+            font-size: 19px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <div class="container">
+
+        <h4 style="font-size: 22px"><br>Hello, {{name}}</h4>
+        <br>
+
+        <p>Your export request has been processed and your files are ready for download. Please click on the links below to download the files:</p>
+
+        <p><a class="btn btn-outline-info" href="{{ profile_filepath }}">{{ profile_filename }}</a></p>
+
+        <p><a class="btn btn-outline-info" href="{{ posts_filepath }}">{{ posts_filename }}</a></p>
+
+        <p>Thank you for being a part of BLOGLITE-V2 !!</p>
+
+        <p>
+            If you have any questions or concerns about your performance, please don't hesitate to contact us at
+            <b>support@bloglite.v2.com </b>.
+            We're always here to help you improve!
+        </p>
+        
+        <br>
+        <p>Regards, <br>BLOGLITE-V2 team</p>
+    </div>
+</body>
+
+</html>

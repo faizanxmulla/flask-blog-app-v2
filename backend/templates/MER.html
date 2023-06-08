@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Monthly Engagement Report</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        p {
+            font-size: 19px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ddd;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h4 style="font-size: 22px"><br />Hello {{ name }},</h4>
+        <br />
+
+        <p>
+            It's time for your monthly review !! Regarding your overall performance, we have some new information for you.
+        </p>
+
+        <hr />
+        <br>
+
+        <p><b>Quick Summary</b></p>
+
+        <table>
+
+            <tr>
+                <td>Total Posts</td>
+                <td>{{ total_posts_count }}</td>
+            </tr>
+            <tr>
+                <td>Followers Count</td>
+                <td>{{ follower_count }}</td>
+            </tr>
+            <tr>
+                <td>Following Count</td>
+                <td>{{ following_count }}</td>
+            </tr>
+        </table>
+
+        <br>
+        <hr />
+
+        <p> Thank you for being a part of BLOGLITE-V2 !! </p>
+
+        <p>
+            If you have any questions or concerns about your performance, please don't hesitate to contact us at <b>support@bloglite.v2.com </b>.
+            We're always here to help you improve!
+        </p>
+
+        <br />
+        <p>Regards, <br />BLOGLITE-V2 team</p>
+    </div>
+</body>
+
+</html>
