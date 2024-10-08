@@ -1,106 +1,193 @@
+# Flask Blog-App V2
 
-# flask-blog-app-v2
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Python](https://img.shields.io/badge/python-3.7%2B-blue)
+![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=flat&logo=vuedotjs&logoColor=%234FC08D)
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=flat&logo=flask&logoColor=white)
 
-A web application where users can register, login, create and manage posts, comment on other users' posts, follow and unfollow other users, and search for other users. Additional features include : Backend jobs like export, alert and reporting jobs.
+A modern, high-performance social media platform built with Flask and Vue.js, featuring real-time updates, asynchronous processing, and intelligent caching.
 
+## 🚀 Features
 
-##
-## Features : 
+### Core Functionality
+- **Robust Authentication** - Secure JWT-based user authentication system
 
-- **User authentication** : Signup and Login (Token Based Authentication - JWT).
+- **Content Management** 
 
-- **Account management** : Create, view, edit, and delete user accounts.
+  - Create, edit, and delete posts with images
 
-- **Content management** : Create, view, edit, and delete posts.
+  - Rich text support with safe HTML handling
 
-- **User profile** : View own posts, followers, and follows.
+- **Social Networking**
+  - Follow/unfollow system
 
-- **User feedback** : Comment on posts to express opinions.
+  - Personalized feed based on followed users
 
-- **Explore other users** : View their posts, followers, and follows.
+  - User search functionality
 
-- **Social features** : Search, follow, and unfollow other users.
+- **Interaction**
+  - Comment on posts
 
-- **Personalized feed** : View posts from followed users.
+  - User profiles with engagement metrics
 
-- **RESTful API** : API available for posts, users, comments, and follows.
+### Advanced Features
 
-- **User-Triggered Async Jobs** : Download user's posts as a CSV file.
+- **Asynchronous Processing**
+  - CSV export of user data
 
-- **Daily Reminder Jobs** : Receive daily reminders to post.
+  - Monthly engagement reports (HTML/PDF)
 
-- **Scheduled Jobs** : Receive a report as an email or PDF summarizing engagement for the month.
+  - Daily activity reminders
 
-- **Performance and Caching** - added caching & cache expiry where required to increase the API performance.
+- **Performance Optimization**
 
-##
-## Technologies Used : 
+  - Redis-based caching with intelligent expiry
 
-- **Flask**: backend API is developed using Flask, a lightweight and flexible web framework for Python.
-
-- **VueJS**: frontend UI is built using VueJS CLI, a popular JavaScript framework for building user interfaces.
-
-- **Jinja2 templates**: used for rendering HTML templates and sending emails.
-
-- **Bootstrap**: used for styling and UI components to create an attractive and responsive user interface.
-
-- **SQLite and SQLAlchemy**: SQLite database is used for data storage, and SQLAlchemy is used as an ORM (Object-Relational Mapping) tool to interact with the database.
-
-- **Flask-Restful**: used to develop the RESTful API for the app
-
-- **Flask-SQLAlchemy**: used to access and modify the app's SQLite database.
-
-- **Flask-Celery**: used for asynchronous background jobs at the backend.
-
-- **Flask-Caching**: used for caching API outputs and increasing performance.
-
-- **Redis**: used as an in-memory database for the API cache and as a message broker for celery.
-
-- **Git**: responsible for version control.
+  - Batch processing for heavy operations
 
 
-##
-## Instructions to run the application.
+## 🛠 Technology Stack
 
-1. Clone the repo.
+- **Backend**: Flask (Python 3.7+)
 
-2. Navigate to the root folder of the application.
-
-3. Open two separate terminals and execute the following commands in each:
-
-```
-redis-server
-mailhog
-```
-
-4. Navigate to the backend folder and open three separate terminals. Execute the following commands in each:
+- **Frontend**: Vue.js with CLI
+- **Database**: SQLite with SQLAlchemy ORM
+- **Caching**: Redis
+- **Task Queue**: Celery
+- **UI Framework**: Bootstrap
+- **Template Engine**: Jinja2 (for emails)
 
 
-```
-BACKEND : python main.py
-WORKERS : celery -A main.celery worker -l info
-BEATS : celery -A main.celery beat --max-interval 1 -l info
-```
+## 📋 Prerequisites
 
-5. Navigate to the frontend folder.
+- Python 3.7 or higher
 
-In the terminal, execute the following command:
+- Node.js 14.x or higher
 
-```
-npm run serve
-```
+- Redis server
 
-These steps will successfully run the application, allowing you to access it from your web browser at http://localhost:8080.
-
-##
-## Contributing
-
-Contributions are always welcome !!
-
-If you would like to contribute to the project, please fork the repository and make a pull request.
+- MailHog (for local email testing)
 
 
-##
-## Support my work 
+## 🔧 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/faizanxmulla/flask-blog-app-v2.git
+   cd flask-blog-app-v2
+   ```
+
+2. **Set up the backend**
+
+   ```bash
+   cd backend
+
+   python -m venv venv
+   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+
+   pip install -r requirements.txt
+   ```
+
+3. **Set up the frontend**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+4. **Start required services**
+   ```bash
+   # Terminal 1
+   redis-server
+   
+   # Terminal 2
+   mailhog
+   ```
+
+## 🚦 Running the Application
+
+1. **Start the backend services**
+   ```bash
+   # Terminal 1 - API Server
+   cd backend
+   python main.py
+
+   # Terminal 2 - Celery Worker
+   cd backend
+   celery -A main.celery worker -l info
+
+   # Terminal 3 - Celery Beat
+   cd backend
+   celery -A main.celery beat --max-interval 1 -l info
+   ```
+
+2. **Start the frontend development server**
+   ```bash
+   cd frontend
+   npm run serve
+   ```
+
+The application will be available at http://localhost:8080
+
+
+
+## 🏗 Architecture
+
+### Database Schema
+
+- **User**: Stores user data, authentication info, and social metrics
+
+- **Post**: Contains post content, metadata, and relationships
+
+- **Comment**: Manages user interactions on posts
+
+- **Follow**: Handles user-to-user relationships
+
+
+### API Design
+
+RESTful architecture with the following main endpoints:
+
+- Authentication: `/api/register`, `/api/login`, `/api/token/refresh`
+
+- Posts: `/api/post`, `/api/post/<post_id>`
+
+- Feed: `/api/feed`
+
+- User: `/api/user`, `/api/profile/<username>`
+
+- Social: `/api/follow/<username>`, `/api/unfollow/<username>`
+
+
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow the steps below:
+
+1. Fork the repository
+
+2. Create your feature branch (`git checkout -b feature/newFeature`)
+
+3. Commit your changes (`git commit -m 'Add some newFeature'`)
+
+4. Push to the branch (`git push origin feature/newFeature`)
+
+5. Open a Pull Request
+
+
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+
+## 👏 Acknowledgments
+
+- Inspired by modern social media platforms
+
+- Built as part of the Modern Application Development - II course (Course ID: `BSCS2006`)
+
+
+## ⭐ Support my work
+
 Do ⭐ the repository, if it inspired you, gave you ideas for your own project or helped you in any way !!!
-
